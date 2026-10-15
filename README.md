@@ -2,7 +2,7 @@
 
 Per-client SMS **Terms & Conditions** and **Privacy Policy** pages for 10DLC / toll-free registrations, served by GitHub Pages (Jekyll, no plugins).
 
-Base URL: `https://websites-mc.github.io/legal`
+Base URL: `https://legal.interline.com`
 
 ## Add a client (3 files, one commit)
 
@@ -14,8 +14,8 @@ Base URL: `https://websites-mc.github.io/legal`
 
 Live about a minute after push:
 
-- `https://websites-mc.github.io/legal/<slug>/terms/` → TCR **termsAndConditionsLink** (toll-free: termsAndConditionsUrl)
-- `https://websites-mc.github.io/legal/<slug>/privacy/` → TCR **privacyPolicyLink** (toll-free: privacyPolicyUrl)
+- `https://legal.interline.com/<slug>/terms/` → TCR **termsAndConditionsLink** (toll-free: termsAndConditionsUrl)
+- `https://legal.interline.com/<slug>/privacy/` → TCR **privacyPolicyLink** (toll-free: privacyPolicyUrl)
 
 `<slug>` = lowercase, hyphens, e.g. `yossis-fish`.
 
@@ -31,4 +31,3 @@ Sources: BW – 10DLC vetting tips and tricks; BW – New requirements for 10DLC
 - `brand_name` must match the TCR brand name exactly.
 - Pages render as static HTML at build time, so vetters and crawlers always see full content.
 - Don't put anything on these pages that the client wouldn't put on their own site (SHAFT-C content gets the campaign rejected).
-- Custom domain later: add a `CNAME` file and set `baseurl: ""` in `_config.yml`.
