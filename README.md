@@ -2,7 +2,7 @@
 
 Per-client SMS **Terms & Conditions** and **Privacy Policy** pages for 10DLC / toll-free registrations, served by GitHub Pages (Jekyll, no plugins).
 
-Base URL: `https://legal.interline.com`
+Base URL: `https://legal.interline.chat`
 
 ## Add a client (3 files, one commit)
 
@@ -14,8 +14,8 @@ Base URL: `https://legal.interline.com`
 
 Live about a minute after push:
 
-- `https://legal.interline.com/<slug>/terms/` → TCR **termsAndConditionsLink** (toll-free: termsAndConditionsUrl)
-- `https://legal.interline.com/<slug>/privacy/` → TCR **privacyPolicyLink** (toll-free: privacyPolicyUrl)
+- `https://legal.interline.chat/<slug>/terms/` → TCR **termsAndConditionsLink** (toll-free: termsAndConditionsUrl)
+- `https://legal.interline.chat/<slug>/privacy/` → TCR **privacyPolicyLink** (toll-free: privacyPolicyUrl)
 
 `<slug>` = lowercase, hyphens, e.g. `yossis-fish`.
 

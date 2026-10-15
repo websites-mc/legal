@@ -1,7 +1,7 @@
 title: Legal Documents
 description: Terms & Conditions and Privacy Policies
 baseurl: ""          # custom domain (CNAME) in use
-url: "https://legal.interline.com"
+url: "https://legal.interline.chat"
 markdown: kramdown
 exclude:
   - README.md
