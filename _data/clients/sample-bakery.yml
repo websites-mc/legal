@@ -5,7 +5,7 @@ dba:                                 # optional
 address: 123 Main Street, Monsey, NY 10952
 email: support@samplebakery.com
 phone: (845) 555-0100
-website: https://samplebakery.com    # optional
+website: https://samplebakery.com    # brand's own site, or if none: Google Business Profile / Facebook / Instagram URL. Same URL as TCR brand 'website'. Never legal.interline.chat.
 effective_date: 2026-10-15
 program_name:                        # optional, defaults to "<brand> text messaging program"
 program_description: Sample Bakery sends text messages to customers who sign up, including order updates and weekly specials.
