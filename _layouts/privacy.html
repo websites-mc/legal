@@ -1,0 +1,56 @@
+---
+layout: base
+doc_title: Privacy Policy
+---
+{%- assign c = site.data.clients[page.client] -%}
+<p>This Privacy Policy explains how {{ c.legal_name }}{% if c.dba %} d/b/a {{ c.dba }}{% endif %} ("{{ c.brand_name }}", "we", "us") collects, uses and protects your personal information, including information collected through our text messaging program.</p>
+
+<h2>1. Information We Collect</h2>
+<p>We may collect the following information when you interact with us:</p>
+<ul>
+{%- for d in c.data_collected %}
+  <li>{{ d }}</li>
+{%- endfor %}
+  <li>Your mobile phone number and your consent to receive text messages</li>
+  <li>Records of your text message opt-in, opt-out and support requests</li>
+</ul>
+
+<h2>2. How We Use Your Information</h2>
+<p>We use the information we collect to:</p>
+<ul>
+{%- for u in c.data_uses %}
+  <li>{{ u }}</li>
+{%- endfor %}
+  <li>Send the text messages you have agreed to receive and respond to your requests</li>
+  <li>Maintain records of your consent and honor opt-out requests</li>
+  <li>Comply with legal obligations</li>
+</ul>
+
+<h2>3. SMS / Text Messaging Privacy</h2>
+<p>Mobile information will not be shared with third parties or affiliates for marketing or promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.</p>
+<p>We do not sell, rent or trade your mobile number or personal information.</p>
+
+<h2>4. How We Share Information</h2>
+<p>We share information only with service providers that help us operate our business and deliver our services, such as our text messaging platform, payment processors and hosting providers. These providers may use your information only to perform services for us and are required to protect it. We may also disclose information when required by law or to protect our rights, customers or others.</p>
+
+<h2>5. Opting Out of Text Messages</h2>
+<p>If you wish to be removed from receiving future communications, you can opt out by texting <span class="key">STOP</span>, <span class="key">QUIT</span>, <span class="key">END</span>, <span class="key">REVOKE</span>, <span class="key">OPT OUT</span>, <span class="key">CANCEL</span> or <span class="key">UNSUBSCRIBE</span>. Reply <span class="key">HELP</span> for assistance.</p>
+
+<h2>6. Data Retention and Security</h2>
+<p>We keep personal information only as long as needed for the purposes described in this policy or as required by law. We use reasonable administrative, technical and physical safeguards to protect your information, but no method of transmission or storage is completely secure.</p>
+
+<h2>7. Children's Privacy</h2>
+<p>Our services are not directed to children under 13, and we do not knowingly collect personal information from children under 13.</p>
+
+<h2>8. Your Choices</h2>
+<p>You may request access to, correction of, or deletion of your personal information by contacting us using the details below.</p>
+
+<h2>9. Changes to This Policy</h2>
+<p>We may update this Privacy Policy from time to time. Changes take effect when posted on this page with a new effective date.</p>
+
+<h2>10. Contact Us</h2>
+<p>{{ c.legal_name }}<br>
+{{ c.address }}<br>
+{% if c.email %}Email: <a href="mailto:{{ c.email }}">{{ c.email }}</a><br>{% endif %}
+{% if c.phone %}Phone: {{ c.phone }}{% endif %}</p>
+<p>See also our <a href="{{ '/' | append: page.client | append: '/terms/' | relative_url }}">Terms &amp; Conditions</a>.</p>

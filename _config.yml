@@ -1,0 +1,8 @@
+title: Legal Documents
+description: Terms & Conditions and Privacy Policies
+baseurl: "/legal"   # repo name; set to "" once a custom domain (CNAME) is added
+url: "https://websites-mc.github.io"
+markdown: kramdown
+exclude:
+  - README.md
+  - _templates

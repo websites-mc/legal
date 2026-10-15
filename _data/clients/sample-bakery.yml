@@ -1,0 +1,27 @@
+# SAMPLE CLIENT – fictional data, safe to keep as a reference or delete.
+brand_name: Sample Bakery            # must match the TCR brand name exactly
+legal_name: Sample Bakery LLC        # legal entity on the EIN
+dba:                                 # optional
+address: 123 Main Street, Monsey, NY 10952
+email: support@samplebakery.com
+phone: (845) 555-0100
+website: https://samplebakery.com    # optional
+effective_date: 2026-10-15
+program_name:                        # optional, defaults to "<brand> text messaging program"
+program_description: Sample Bakery sends text messages to customers who sign up, including order updates and weekly specials.
+message_types:
+  - Order confirmations and pickup notifications
+  - Customer support conversations
+  - Promotional offers and weekly specials
+opt_in_methods:
+  - Entering your mobile number and checking the SMS consent box on our website sign-up form
+  - Texting JOIN to (845) 555-0100
+frequency: Message frequency varies, up to 4 messages per week.
+age_gated: false                     # true for alcohol/tobacco – sets 21+ eligibility
+min_age:
+data_collected:
+  - Your name, email address and mailing address
+  - Order and purchase history
+data_uses:
+  - Process and fulfill your orders
+  - Provide customer support

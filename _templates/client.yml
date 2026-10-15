@@ -1,0 +1,27 @@
+# Copy to _data/clients/<slug>.yml and fill in every field.
+brand_name: <TCR brand name>            # must match the TCR brand name exactly
+legal_name: <Legal entity name on EIN>        # legal entity on the EIN
+dba:                                 # optional
+address: <Street, City, ST ZIP>
+email: <support email>
+phone: <support phone>
+website: <https://client-site.com or blank>    # optional
+effective_date: 2026-10-15
+program_name:                        # optional, defaults to "<brand> text messaging program"
+program_description: <TCR brand name> sends text messages to customers who sign up, including order updates and weekly specials.
+message_types:
+  - Order confirmations and pickup notifications
+  - Customer support conversations
+  - Promotional offers and weekly specials
+opt_in_methods:
+  - Entering your mobile number and checking the SMS consent box on our website sign-up form
+  - Texting JOIN to <support phone>
+frequency: Message frequency varies, up to 4 messages per week.
+age_gated: false                     # true for alcohol/tobacco – sets 21+ eligibility
+min_age:
+data_collected:
+  - Your name, email address and mailing address
+  - Order and purchase history
+data_uses:
+  - Process and fulfill your orders
+  - Provide customer support
