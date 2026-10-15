@@ -1,0 +1,26 @@
+brand_name: Weinstock Judaica              # must match the TCR brand name exactly
+legal_name: Williamsburg Judaica Inc       # legal entity on the EIN
+dba: Weinstock Judaica
+address: 650 Bedford Ave, Brooklyn, NY 11249
+email: mayer@weinstockjudaica.com
+phone: (845) 500-0295
+website: https://weinstockjudaica1.online
+effective_date: 2026-10-15
+program_name:
+program_description: Weinstock Judaica sends text messages to customers who sign up, including order and pickup updates, customer support replies, and store promotions, new arrivals and holiday hours.
+message_types:
+  - Order confirmations and ready-for-pickup notifications
+  - Customer support conversations
+  - Promotional offers, new arrivals and holiday store hours
+opt_in_methods:
+  - Texting JOIN to (845) 500-0295
+frequency: Message frequency varies, up to 4 messages per week.
+age_gated: false
+min_age:
+data_collected:
+  - Your name and mobile phone number
+  - Order and purchase history
+data_uses:
+  - Process and fulfill your orders
+  - Send the text messages you signed up for
+  - Provide customer support
