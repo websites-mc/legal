@@ -1,0 +1,38 @@
+{%- assign c = site.data.clients[page.client] -%}
+{%- capture sms_url %}{{ site.url }}{{ '/' | append: page.client | append: '/sms/' | relative_url }}{% endcapture -%}
+{%- capture terms_url %}{{ site.url }}{{ '/' | append: page.client | append: '/terms/' | relative_url }}{% endcapture -%}
+{%- capture privacy_url %}{{ site.url }}{{ '/' | append: page.client | append: '/privacy/' | relative_url }}{% endcapture -%}
+{%- capture summary %}{% if c.keyword_summary %}{{ c.keyword_summary }}{% else %}{{ c.message_types | join: '; ' }}{% endif %}{% endcapture -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Text {{ c.keyword }} sign | {{ c.brand_name }}</title>
+  <style>
+    @page { size: letter; margin: 0.6in; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:#fff; color:#111; font:16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .sheet { max-width: 7.3in; margin: 0 auto; padding: 32px 16px; text-align:center; }
+    .brand { font-size: 28px; font-weight: 700; letter-spacing: .02em; margin: 0 0 32px; }
+    .cta { font-size: 56px; line-height: 1.15; font-weight: 800; margin: 0; }
+    .cta .kw { display:inline-block; border: 4px solid #111; border-radius: 12px; padding: 0 16px; }
+    .to { font-size: 44px; font-weight: 800; margin: 16px 0 24px; white-space: nowrap; }
+    .what { font-size: 24px; margin: 0 0 40px; }
+    .fine { font-size: 12.5px; line-height: 1.45; color:#333; text-align:left; border-top:1px solid #bbb; padding-top: 12px; }
+    .hint { font-size: 13px; color:#666; margin-top: 24px; }
+    @media print { .hint { display:none; } }
+  </style>
+</head>
+<body>
+<main class="sheet">
+  <p class="brand">{{ c.brand_name }}</p>
+  <p class="cta">Text <span class="kw">{{ c.keyword }}</span></p>
+  <p class="to">to {{ c.sms_number }}</p>
+  <p class="what">for {{ summary }}</p>
+  <p class="fine">By texting {{ c.keyword }} to {{ c.sms_number }}, you agree to receive recurring automated text messages from {{ c.brand_name }}: {{ summary }}. Consent is not a condition of purchase. {{ c.frequency | default: "Msg frequency varies." }} Msg &amp; data rates may apply. Reply <strong>HELP</strong> for help, <strong>STOP</strong> to opt out.{% if c.age_gated %} {{ c.min_age | default: 21 }}+ only.{% endif %} Mobile information will not be shared with third parties for marketing. Details, Terms &amp; Privacy: {{ sms_url | remove: 'https://' }}</p>
+  <p class="hint">Print this page (Ctrl/Cmd + P) and post it where customers see it. Photograph it in place for the TCR CTA upload.</p>
+</main>
+</body>
+</html>

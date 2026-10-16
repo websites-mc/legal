@@ -16,6 +16,9 @@ message_types:
 opt_in_methods:
   - Entering your mobile number and checking the SMS consent box on our website sign-up form
   - Texting JOIN to (845) 555-0100
+keyword: JOIN                        # keyword opt-in (optional). Not STOP/HELP/END/CANCEL/QUIT/UNSUBSCRIBE. Turns on /<slug>/sms/ and /<slug>/sign/
+sms_number: (845) 555-0100           # the number customers text – the one on the TCR campaign
+keyword_summary: order updates and weekly specials   # short phrase for the ad; defaults to message_types joined
 frequency: Message frequency varies, up to 4 messages per week.
 age_gated: false                     # true for alcohol/tobacco – sets 21+ eligibility
 min_age:

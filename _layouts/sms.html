@@ -1,0 +1,35 @@
+---
+layout: base
+doc_title: Text Message Program
+---
+{%- assign c = site.data.clients[page.client] -%}
+{%- capture terms_url %}{{ site.url }}{{ '/' | append: page.client | append: '/terms/' | relative_url }}{% endcapture -%}
+{%- capture privacy_url %}{{ site.url }}{{ '/' | append: page.client | append: '/privacy/' | relative_url }}{% endcapture -%}
+{%- capture summary %}{% if c.keyword_summary %}{{ c.keyword_summary }}{% else %}{{ c.message_types | join: '; ' }}{% endif %}{% endcapture -%}
+<style>
+  .kw { border:2px solid var(--accent); border-radius:12px; padding:24px 16px; text-align:center; margin:8px 0 24px; }
+  .kw .big { font-size:28px; line-height:1.3; font-weight:700; margin:0; }
+  .kw .num { white-space:nowrap; }
+  .kw a.btn { display:inline-block; margin-top:16px; padding:10px 18px; border-radius:8px; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; }
+  .disclosure { font-size:14px; color:var(--muted); }
+</style>
+
+<div class="kw">
+  <p class="big">Text <strong>{{ c.keyword }}</strong> to <span class="num">{{ c.sms_number }}</span></p>
+  <p>to get {{ summary }} from {{ c.brand_name }}.</p>
+  <a class="btn" href="sms:{{ c.sms_number | remove: ' ' | remove: '(' | remove: ')' | remove: '-' }}?&body={{ c.keyword }}">Text {{ c.keyword }} now</a>
+</div>
+
+<h2>What you'll receive</h2>
+<ul>
+{%- for t in c.message_types %}
+  <li>{{ t }}</li>
+{%- endfor %}
+</ul>
+<p>{{ c.frequency | default: "Message frequency varies." }} After you text {{ c.keyword }}, you will get one confirmation message.</p>
+
+<h2>Disclosure</h2>
+<p class="disclosure">By texting {{ c.keyword }} to {{ c.sms_number }}, you agree to receive recurring automated text messages from {{ c.brand_name }} at the number you texted from: {{ summary }}. Consent is not a condition of purchase. {{ c.frequency | default: "Msg frequency varies." }} Msg &amp; data rates may apply. Reply <span class="key">HELP</span> for help, <span class="key">STOP</span> to opt out at any time.{% if c.age_gated %} You must be {{ c.min_age | default: 21 }} or older to join.{% endif %} Mobile information will not be shared with third parties or affiliates for marketing or promotional purposes. See our <a href="{{ terms_url }}">Terms &amp; Conditions</a> and <a href="{{ privacy_url }}">Privacy Policy</a>.</p>
+
+<h2>Questions</h2>
+<p>Reply <span class="key">HELP</span> to any message, or contact {{ c.brand_name }}{% if c.email %} at <a href="mailto:{{ c.email }}">{{ c.email }}</a>{% endif %}{% if c.email and c.phone %} or {% endif %}{% if c.phone %}{{ c.phone }}{% endif %}.</p>

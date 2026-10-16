@@ -31,3 +31,14 @@ Sources: BW – 10DLC vetting tips and tricks; BW – New requirements for 10DLC
 - `brand_name` must match the TCR brand name exactly.
 - Pages render as static HTML at build time, so vetters and crawlers always see full content.
 - Don't put anything on these pages that the client wouldn't put on their own site (SHAFT-C content gets the campaign rejected).
+
+## Keyword opt-in pages (optional, for clients with no website or no opt-in form)
+
+Set `keyword`, `sms_number` and `keyword_summary` in the client's data file, then add two front-matter-only files:
+
+| File | Front matter | Live at |
+|---|---|---|
+| `<slug>/sms.html` | `layout: sms`, `client: <slug>`, `permalink: /<slug>/sms/` | `https://legal.interline.chat/<slug>/sms/`: public keyword page with the full disclosure. Use it as the CTA link in TCR and in the client's posts. |
+| `<slug>/sign.html` | `layout: sign`, `client: <slug>`, `permalink: /<slug>/sign/` | `https://legal.interline.chat/<slug>/sign/`: printable letter-size sign for the counter or window. |
+
+The client must actually post the sign or share the page. The CTA screenshot uploaded to TCR is a photo or screenshot of the real, published ad, never a mock-up. See `playbooks/keyword-cta-playbook.md` in the compliance knowledge repo.
