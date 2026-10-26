@@ -22,9 +22,10 @@ message_types:
   - Delivery scheduling, reminders and updates for your order
   - Promotional offers, sales events, new arrivals and in-stock specials
 opt_in_methods:
-  - Texting JOIN to (973) 664-7253, as advertised on signs in our stores, on the card included with furniture deliveries, and on our text program page
+  - Texting JOIN to (973) 664-7253, as advertised on signs in our stores and on the card included with furniture deliveries
   - Texting us a question or photo at (973) 664-7253, which starts a customer service conversation (you receive replies about your request only; marketing messages are sent only after you text JOIN)
 keyword: JOIN
+hosted_sms: true                           # client's own number hosted for SMS: no /sms/ page; sign + card link Terms/Privacy directly
 sms_number: (973) 664-7253
 keyword_summary: special offers, delivery updates and customer service
 conversational: true                       # adds the "just text us" line + consumer-initiated disclosure on sms/sign/card

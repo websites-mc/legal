@@ -46,6 +46,7 @@ Optional extras:
 | Field / file | Effect |
 |---|---|
 | `logo`, `brand_color`, `perks` | Optional branding on the sign and card: logo path in the repo, accent color, up to 3 benefit tiles on the sign. QR codes use vendored `assets/qrcode.js` (MIT). |
+| `hosted_sms: true` | Client texts from their own hosted number: do NOT add `<slug>/sms.html` (a CTA on our domain is not accepted for hosted SMS; the opt-in must be on the client's own page or printed materials). Sign and card then show Terms + Privacy URLs instead of the SMS page. |
 | `conversational: true` | Adds "Questions? Just text us" + the consumer-initiated disclosure (replies only, no marketing unless they text the keyword) to the sms, sign and card pages. |
 | `<slug>/card.html` (`layout: card`, `permalink: /<slug>/card/`) + optional `card_headline`, `card_message` | `https://legal.interline.chat/<slug>/card/`: printable delivery/receipt insert, 4 per letter page (4.25 × 5.5 in), with QR code that opens a text with the keyword. |
 

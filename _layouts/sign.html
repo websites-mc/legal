@@ -1,5 +1,7 @@
 {%- assign c = site.data.clients[page.client] -%}
 {%- capture sms_url %}{{ site.url }}{{ '/' | append: page.client | append: '/sms/' | relative_url }}{% endcapture -%}
+{%- capture terms_url %}{{ site.url }}{{ '/' | append: page.client | append: '/terms/' | relative_url }}{% endcapture -%}
+{%- capture privacy_url %}{{ site.url }}{{ '/' | append: page.client | append: '/privacy/' | relative_url }}{% endcapture -%}
 {%- capture summary %}{% if c.keyword_summary %}{{ c.keyword_summary }}{% else %}{{ c.message_types | join: '; ' }}{% endif %}{% endcapture -%}
 {%- assign digits = c.sms_number | remove: ' ' | remove: '(' | remove: ')' | remove: '-' | remove: '+' -%}
 <!doctype html>
@@ -82,7 +84,7 @@
   <p class="ask"><b>Have a question?</b> Just text us. Photos welcome.</p>
   {%- endif %}
 
-  <p class="fine">By texting {{ c.keyword }} to {{ c.sms_number }}, you agree to receive recurring automated text messages from {{ c.brand_name }}: {{ summary }}. Consent is not a condition of purchase. {{ c.frequency | default: "Msg frequency varies." }} Msg &amp; data rates may apply. Reply <strong>HELP</strong> for help, <strong>STOP</strong> to opt out.{% if c.age_gated %} {{ c.min_age | default: 21 }}+ only.{% endif %} Mobile information will not be shared with third parties for marketing.{% if c.conversational %} By texting us a question, you agree to receive replies from {{ c.brand_name }} about your request only (no marketing unless you text {{ c.keyword }}); Msg &amp; data rates may apply; reply STOP to opt out.{% endif %} Details, Terms &amp; Privacy: {{ sms_url | remove: 'https://' }}</p>
+  <p class="fine">By texting {{ c.keyword }} to {{ c.sms_number }}, you agree to receive recurring automated text messages from {{ c.brand_name }}: {{ summary }}. Consent is not a condition of purchase. {{ c.frequency | default: "Msg frequency varies." }} Msg &amp; data rates may apply. Reply <strong>HELP</strong> for help, <strong>STOP</strong> to opt out.{% if c.age_gated %} {{ c.min_age | default: 21 }}+ only.{% endif %} Mobile information will not be shared with third parties for marketing.{% if c.conversational %} By texting us a question, you agree to receive replies from {{ c.brand_name }} about your request only (no marketing unless you text {{ c.keyword }}); Msg &amp; data rates may apply; reply STOP to opt out.{% endif %} {% if c.hosted_sms %}Terms: {{ terms_url | remove: 'https://' }} Privacy: {{ privacy_url | remove: 'https://' }}{% else %}Details, Terms &amp; Privacy: {{ sms_url | remove: 'https://' }}{% endif %}</p>
   <div class="foot">{% if c.website %}{{ c.website | remove: 'https://' | remove: 'http://' | remove: 'www.' }}{% else %}{{ c.brand_name }}{% endif %}</div>
 </main>
 <script src="{{ '/assets/qrcode.js' | relative_url }}"></script>
