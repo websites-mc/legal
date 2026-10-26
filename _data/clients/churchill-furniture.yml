@@ -2,9 +2,18 @@ brand_name: Churchill Furniture              # must match the TCR brand name exa
 legal_name: Churchill Living LLC           # legal entity on the EIN
 dba: Churchill Furniture
 address: 56 Utter Ave, Hawthorne, NJ 07506
-email: leibk@churchillliving.com
+email: legal@churchillliving.com
 phone: (973) 664-7253
 website: https://churchilllakewood.com
+logo: /churchill-furniture/logo.png          # optional, shown on sign + card
+brand_color: "#155C68"                       # optional, accent color on sign + card (from logo)
+perks:                                       # optional, 3 short tiles on the sign
+  - title: Special offers
+    text: Sales events, new arrivals and in-stock deals
+  - title: Delivery updates
+    text: Scheduling, reminders and day-of updates
+  - title: Customer service
+    text: Questions, quotes and product photos
 effective_date: 2026-10-26
 program_name:
 program_description: Churchill Furniture sends text messages to customers who sign up, including customer service and sales conversations (with product photos), delivery scheduling and updates, and promotional offers such as sales events, new arrivals and in-stock specials.

@@ -11,50 +11,65 @@
   <title>Delivery card | {{ c.brand_name }}</title>
   <style>
     @page { size: letter; margin: 0; }
-    * { box-sizing: border-box; }
-    body { margin:0; background:#f2f2f2; color:#111; font:14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    :root { --brand: {{ c.brand_color | default: '#111111' }}; --tint: color-mix(in srgb, var(--brand) 9%, #fff); --ink:#16191b; }
+    * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { margin:0; background:#eceeee; color:var(--ink); font:14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
     .hint { max-width: 8.5in; margin: 16px auto; padding: 0 16px; color:#555; font-size:14px; }
     .sheet { width: 8.5in; height: 11in; margin: 0 auto 24px; background:#fff; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
-    .card { border: 1px dashed #bbb; padding: 0.3in 0.3in 0.25in; display:flex; flex-direction:column; text-align:center; overflow:hidden; }
-    .brand { font-size: 13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin:0 0 10px; }
-    .head { font-size: 19px; line-height:1.2; font-weight:800; margin:0 0 8px; }
-    .msg { font-size: 13px; margin:0 0 14px; color:#333; }
-    .cta { font-size: 24px; font-weight:800; margin:0; line-height:1.15; }
-    .cta .kw { display:inline-block; border:3px solid #111; border-radius:8px; padding:0 8px; }
-    .num { font-size: 21px; font-weight:800; margin:4px 0 4px; white-space:nowrap; }
-    .what { font-size: 12.5px; margin:0 0 8px; }
-    .qr { display:flex; justify-content:center; margin: 4px 0 8px; min-height: 0.95in; }
-    .qr img, .qr canvas { width: 0.95in !important; height: 0.95in !important; }
-    .ask { font-size: 12px; font-weight:600; margin:0 0 6px; }
-    .fine { margin-top:auto; font-size: 7.2px; line-height:1.35; color:#333; text-align:left; border-top:1px solid #ccc; padding-top:5px; }
+    .card { position:relative; outline: 1px dashed #c3c7c7; outline-offset: -0.5px; display:flex; flex-direction:column; text-align:center; overflow:hidden; }
+    .inner { padding: 0.34in 0.3in 0; display:flex; flex-direction:column; flex:1; }
+    .logo { height: 0.75in; max-width: 100%; margin: 0 auto 0.2in; }
+    .brandname { font-size: 18px; font-weight: 800; color: var(--brand); margin: 0 0 0.12in; }
+    .head { font-size: 19px; line-height:1.2; font-weight:800; margin:0 0 5px; color: var(--brand); }
+    .msg { font-size: 13px; margin:0 0 0.22in; color:#3a3a3a; }
+    .hero { display:flex; align-items:center; gap: 12px; background: var(--tint); border-radius: 10px; padding: 14px 14px; text-align:left; }
+    .hero .copy { flex:1; }
+    .cta { font-size: 28px; font-weight:800; margin:0; line-height:1.1; }
+    .kw { display:inline-block; background: var(--brand); color:#fff; border-radius: 7px; padding: 0 8px 2px; }
+    .num { font-size: 19px; font-weight:800; margin:6px 0 3px; white-space:nowrap; }
+    .what { font-size: 11.5px; margin:0; color:#333; }
+    .qr { width: 1.08in; height: 1.08in; flex: 0 0 auto; background:#fff; border-radius:6px; padding:4px; }
+    .qr svg { width:100%; height:100%; display:block; }
+    .ask { font-size: 13px; margin: 0.18in 0 0; }
+    .ask b { color: var(--brand); }
+    .fine { margin-top:auto; font-size: 7.4px; line-height:1.38; color:#3a3a3a; text-align:left; padding: 6px 0 6px; }
+    .foot { background: var(--brand); color:#fff; font-size: 10px; font-weight:600; letter-spacing:.05em; padding: 5px 0; }
     @media print { body { background:#fff; } .hint { display:none; } .sheet { margin:0; } }
     @media screen and (max-width: 8.6in) { .sheet { width:100%; height:auto; grid-template-columns:1fr; } .card { min-height: 5.5in; } }
   </style>
 </head>
 <body>
-<p class="hint">Delivery card, 4 per letter page (each 4.25 × 5.5 in). Print on card stock at 100% scale, cut on the dashed lines, and put one in every delivery. Photograph a card in a real delivery for the TCR CTA upload.</p>
+<p class="hint">Delivery card, 4 per letter page (each 4.25 × 5.5 in). Print on card stock at 100% (margins: none, background graphics on), cut on the dashed lines, and put one in every delivery. Photograph a card in a real delivery for the TCR CTA upload.</p>
 <main class="sheet">
 {%- for i in (1..4) %}
   <section class="card">
-    <p class="brand">{{ c.brand_name }}</p>
-    {%- if c.card_headline %}<p class="head">{{ c.card_headline }}</p>{% endif %}
-    {%- if c.card_message %}<p class="msg">{{ c.card_message }}</p>{% endif %}
-    <p class="cta">Text <span class="kw">{{ c.keyword }}</span></p>
-    <p class="num">to {{ c.sms_number }}</p>
-    <p class="what">for {{ summary }}</p>
-    <div class="qr" data-qr="SMSTO:{{ digits }}:{{ c.keyword }}"></div>
-    {%- if c.conversational %}<p class="ask">Questions? Just text us. Photos welcome.</p>{% endif %}
-    <p class="fine">By texting {{ c.keyword }} to {{ c.sms_number }}, you agree to receive recurring automated text messages from {{ c.brand_name }}: {{ summary }}. Consent is not a condition of purchase. {{ c.frequency | default: "Msg frequency varies." }} Msg &amp; data rates may apply. Reply <strong>HELP</strong> for help, <strong>STOP</strong> to opt out. Mobile information will not be shared with third parties for marketing.{% if c.conversational %} By texting us a question, you agree to receive replies about your request only (no marketing unless you text {{ c.keyword }}).{% endif %} Terms &amp; Privacy: {{ sms_url | remove: 'https://' }}</p>
+    <div class="inner">
+      {%- if c.logo %}<img class="logo" src="{{ c.logo | relative_url }}" alt="{{ c.brand_name }}">{% else %}<p class="brandname">{{ c.brand_name }}</p>{% endif %}
+      {%- if c.card_headline %}<p class="head">{{ c.card_headline }}</p>{% endif %}
+      {%- if c.card_message %}<p class="msg">{{ c.card_message }}</p>{% endif %}
+      <div class="hero">
+        <div class="copy">
+          <p class="cta">Text <span class="kw">{{ c.keyword }}</span></p>
+          <p class="num">to {{ c.sms_number }}</p>
+          <p class="what">for {{ summary }}</p>
+        </div>
+        <div class="qr" data-qr="SMSTO:{{ digits }}:{{ c.keyword }}"></div>
+      </div>
+      {%- if c.conversational %}<p class="ask"><b>Questions?</b> Just text us. Photos welcome.</p>{% endif %}
+      <p class="fine">By texting {{ c.keyword }} to {{ c.sms_number }}, you agree to receive recurring automated text messages from {{ c.brand_name }}: {{ summary }}. Consent is not a condition of purchase. {{ c.frequency | default: "Msg frequency varies." }} Msg &amp; data rates may apply. Reply <strong>HELP</strong> for help, <strong>STOP</strong> to opt out. Mobile information will not be shared with third parties for marketing.{% if c.conversational %} By texting us a question, you agree to receive replies about your request only (no marketing unless you text {{ c.keyword }}).{% endif %} Terms &amp; Privacy: {{ sms_url | remove: 'https://' }}</p>
+    </div>
+    <div class="foot">{% if c.website %}{{ c.website | remove: 'https://' | remove: 'http://' | remove: 'www.' }}{% else %}{{ c.brand_name }}{% endif %}</div>
   </section>
 {%- endfor %}
 </main>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="{{ '/assets/qrcode.js' | relative_url }}"></script>
 <script>
   try {
-    document.querySelectorAll('.qr').forEach(function (el) {
-      new QRCode(el, { text: el.getAttribute('data-qr'), width: 256, height: 256, correctLevel: QRCode.CorrectLevel.M });
+    document.querySelectorAll('[data-qr]').forEach(function (el) {
+      var q = qrcode(0, 'M'); q.addData(el.getAttribute('data-qr')); q.make();
+      el.innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
     });
-  } catch (e) { /* QR is optional; the card works without it */ }
+  } catch (e) { /* QR is optional */ }
 </script>
 </body>
 </html>

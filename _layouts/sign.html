@@ -1,8 +1,7 @@
 {%- assign c = site.data.clients[page.client] -%}
 {%- capture sms_url %}{{ site.url }}{{ '/' | append: page.client | append: '/sms/' | relative_url }}{% endcapture -%}
-{%- capture terms_url %}{{ site.url }}{{ '/' | append: page.client | append: '/terms/' | relative_url }}{% endcapture -%}
-{%- capture privacy_url %}{{ site.url }}{{ '/' | append: page.client | append: '/privacy/' | relative_url }}{% endcapture -%}
 {%- capture summary %}{% if c.keyword_summary %}{{ c.keyword_summary }}{% else %}{{ c.message_types | join: '; ' }}{% endif %}{% endcapture -%}
+{%- assign digits = c.sms_number | remove: ' ' | remove: '(' | remove: ')' | remove: '-' | remove: '+' -%}
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,31 +10,89 @@
   <meta name="robots" content="noindex">
   <title>Text {{ c.keyword }} sign | {{ c.brand_name }}</title>
   <style>
-    @page { size: letter; margin: 0.6in; }
-    * { box-sizing: border-box; }
-    body { margin:0; background:#fff; color:#111; font:16px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-    .sheet { max-width: 7.3in; margin: 0 auto; padding: 32px 16px; text-align:center; }
-    .brand { font-size: 28px; font-weight: 700; letter-spacing: .02em; margin: 0 0 32px; }
-    .cta { font-size: 56px; line-height: 1.15; font-weight: 800; margin: 0; }
-    .cta .kw { display:inline-block; border: 4px solid #111; border-radius: 12px; padding: 0 16px; }
-    .to { font-size: 44px; font-weight: 800; margin: 16px 0 24px; white-space: nowrap; }
-    .what { font-size: 24px; margin: 0 0 40px; }
-    .fine { font-size: 12.5px; line-height: 1.45; color:#333; text-align:left; border-top:1px solid #bbb; padding-top: 12px; }
-    .hint { font-size: 13px; color:#666; margin-top: 24px; }
-    @media print { .hint { display:none; } }
+    @page { size: letter; margin: 0; }
+    :root { --brand: {{ c.brand_color | default: '#111111' }}; --tint: color-mix(in srgb, var(--brand) 9%, #fff); --ink:#16191b; }
+    * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { margin:0; background:#eceeee; color:var(--ink); font:16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .hint { max-width: 8.5in; margin: 16px auto; padding: 0 16px; font-size: 14px; color:#555; }
+    .sheet { width: 8.5in; min-height: 11in; margin: 0 auto 24px; background:#fff; display:flex; flex-direction:column; }
+    .top { padding: 0.6in 0.6in 0.3in; text-align:center; }
+    .logo { height: 1.25in; max-width: 100%; }
+    .brandname { font-size: 34px; font-weight: 800; color: var(--brand); margin:0; }
+    .eyebrow { margin: 0.34in 0 0; font-size: 16px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--brand); }
+    .hero { margin: 0 0.6in; padding: 0.4in 0.45in; border-radius: 18px; background: var(--tint); display:flex; align-items:center; gap: 0.35in; }
+    .hero .copy { flex:1; text-align:left; }
+    .cta { font-size: 72px; line-height: 1.05; font-weight: 800; margin: 0; letter-spacing:-.01em; }
+    .kw { display:inline-block; background: var(--brand); color:#fff; border-radius: 14px; padding: 2px 20px 6px; }
+    .to { font-size: 44px; font-weight: 800; margin: 12px 0 6px; white-space: nowrap; }
+    .what { font-size: 21px; margin: 0; color:#333; }
+    .qrbox { flex: 0 0 auto; text-align:center; }
+    .qr { width: 1.9in; height: 1.9in; background:#fff; border-radius: 10px; padding: 8px; }
+    .qr svg { width:100%; height:100%; display:block; }
+    .qrcap { font-size: 12px; font-weight:600; margin-top: 6px; color: var(--brand); }
+    .perks { display:grid; grid-template-columns: repeat(3, 1fr); gap: 0.2in; margin: 0.42in 0.6in 0; }
+    .perk { border-top: 4px solid var(--brand); padding-top: 10px; }
+    .perk b { display:block; font-size: 21px; margin-bottom: 2px; }
+    .perk span { font-size: 15.5px; color:#444; }
+    .ask { margin: 0.42in 0.6in 0; padding: 18px 20px; border: 2px solid var(--brand); border-radius: 12px; font-size: 22px; text-align:center; }
+    .ask b { color: var(--brand); }
+    .fine { margin: auto 0.6in 0; padding: 0.22in 0 0.18in; font-size: 11.5px; line-height: 1.45; color:#3a3a3a; border-top: 1px solid #ccd; }
+    .foot { background: var(--brand); color:#fff; text-align:center; font-size: 14px; font-weight: 600; letter-spacing: .04em; padding: 12px 0.6in; }
+    @media print { body { background:#fff; } .hint { display:none; } .sheet { margin:0; height:11in; min-height:0; overflow:hidden; } }
+    @media screen and (max-width: 8.6in) {
+      .sheet { width:100%; min-height:0; }
+      .hero { flex-direction:column; margin: 0 16px; padding: 20px; }
+      .hero .copy { text-align:center; }
+      .cta { font-size: 44px; } .to { font-size: 28px; white-space: normal; }
+      .perks { grid-template-columns: 1fr; margin: 20px 16px 0; }
+      .ask, .fine { margin-left:16px; margin-right:16px; }
+      .top { padding: 24px 16px 12px; } .logo { height:auto; width: 80%; }
+    }
   </style>
 </head>
 <body>
+<p class="hint">Print at 100% on letter paper (Ctrl/Cmd + P, margins: none, background graphics on). Post it where customers see it and photograph it in place for the TCR CTA upload.</p>
 <main class="sheet">
-  <p class="brand">{{ c.brand_name }}</p>
-  <p class="cta">Text <span class="kw">{{ c.keyword }}</span></p>
-  <p class="to">to {{ c.sms_number }}</p>
-  <p class="what">for {{ summary }}</p>
-  {%- if c.conversational %}
-  <p class="what" style="margin-top:-24px">Questions? Just text us at the same number. Photos welcome.</p>
+  <div class="top">
+    {%- if c.logo %}<img class="logo" src="{{ c.logo | relative_url }}" alt="{{ c.brand_name }}">{% else %}<p class="brandname">{{ c.brand_name }}</p>{% endif %}
+    <p class="eyebrow">Text with us</p>
+  </div>
+
+  <div class="hero">
+    <div class="copy">
+      <p class="cta">Text <span class="kw">{{ c.keyword }}</span></p>
+      <p class="to">to {{ c.sms_number }}</p>
+      <p class="what">for {{ summary }}</p>
+    </div>
+    <div class="qrbox">
+      <div class="qr" data-qr="SMSTO:{{ digits }}:{{ c.keyword }}"></div>
+      <div class="qrcap">Scan to text {{ c.keyword }}</div>
+    </div>
+  </div>
+
+  {%- if c.perks %}
+  <div class="perks">
+    {%- for p in c.perks %}
+    <div class="perk"><b>{{ p.title }}</b><span>{{ p.text }}</span></div>
+    {%- endfor %}
+  </div>
   {%- endif %}
+
+  {%- if c.conversational %}
+  <p class="ask"><b>Have a question?</b> Just text us. Photos welcome.</p>
+  {%- endif %}
+
   <p class="fine">By texting {{ c.keyword }} to {{ c.sms_number }}, you agree to receive recurring automated text messages from {{ c.brand_name }}: {{ summary }}. Consent is not a condition of purchase. {{ c.frequency | default: "Msg frequency varies." }} Msg &amp; data rates may apply. Reply <strong>HELP</strong> for help, <strong>STOP</strong> to opt out.{% if c.age_gated %} {{ c.min_age | default: 21 }}+ only.{% endif %} Mobile information will not be shared with third parties for marketing.{% if c.conversational %} By texting us a question, you agree to receive replies from {{ c.brand_name }} about your request only (no marketing unless you text {{ c.keyword }}); Msg &amp; data rates may apply; reply STOP to opt out.{% endif %} Details, Terms &amp; Privacy: {{ sms_url | remove: 'https://' }}</p>
-  <p class="hint">Print this page (Ctrl/Cmd + P) and post it where customers see it. Photograph it in place for the TCR CTA upload.</p>
+  <div class="foot">{% if c.website %}{{ c.website | remove: 'https://' | remove: 'http://' | remove: 'www.' }}{% else %}{{ c.brand_name }}{% endif %}</div>
 </main>
+<script src="{{ '/assets/qrcode.js' | relative_url }}"></script>
+<script>
+  try {
+    document.querySelectorAll('[data-qr]').forEach(function (el) {
+      var q = qrcode(0, 'M'); q.addData(el.getAttribute('data-qr')); q.make();
+      el.innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+    });
+  } catch (e) { /* QR is optional */ }
+</script>
 </body>
 </html>
