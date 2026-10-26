@@ -1,0 +1,60 @@
+{%- assign c = site.data.clients[page.client] -%}
+{%- capture sms_url %}{{ site.url }}{{ '/' | append: page.client | append: '/sms/' | relative_url }}{% endcapture -%}
+{%- capture summary %}{% if c.keyword_summary %}{{ c.keyword_summary }}{% else %}{{ c.message_types | join: '; ' }}{% endif %}{% endcapture -%}
+{%- assign digits = c.sms_number | remove: ' ' | remove: '(' | remove: ')' | remove: '-' | remove: '+' -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Delivery card | {{ c.brand_name }}</title>
+  <style>
+    @page { size: letter; margin: 0; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:#f2f2f2; color:#111; font:14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .hint { max-width: 8.5in; margin: 16px auto; padding: 0 16px; color:#555; font-size:14px; }
+    .sheet { width: 8.5in; height: 11in; margin: 0 auto 24px; background:#fff; display:grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+    .card { border: 1px dashed #bbb; padding: 0.3in 0.3in 0.25in; display:flex; flex-direction:column; text-align:center; overflow:hidden; }
+    .brand { font-size: 13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin:0 0 10px; }
+    .head { font-size: 19px; line-height:1.2; font-weight:800; margin:0 0 8px; }
+    .msg { font-size: 13px; margin:0 0 14px; color:#333; }
+    .cta { font-size: 24px; font-weight:800; margin:0; line-height:1.15; }
+    .cta .kw { display:inline-block; border:3px solid #111; border-radius:8px; padding:0 8px; }
+    .num { font-size: 21px; font-weight:800; margin:4px 0 4px; white-space:nowrap; }
+    .what { font-size: 12.5px; margin:0 0 8px; }
+    .qr { display:flex; justify-content:center; margin: 4px 0 8px; min-height: 0.95in; }
+    .qr img, .qr canvas { width: 0.95in !important; height: 0.95in !important; }
+    .ask { font-size: 12px; font-weight:600; margin:0 0 6px; }
+    .fine { margin-top:auto; font-size: 7.2px; line-height:1.35; color:#333; text-align:left; border-top:1px solid #ccc; padding-top:5px; }
+    @media print { body { background:#fff; } .hint { display:none; } .sheet { margin:0; } }
+    @media screen and (max-width: 8.6in) { .sheet { width:100%; height:auto; grid-template-columns:1fr; } .card { min-height: 5.5in; } }
+  </style>
+</head>
+<body>
+<p class="hint">Delivery card, 4 per letter page (each 4.25 × 5.5 in). Print on card stock at 100% scale, cut on the dashed lines, and put one in every delivery. Photograph a card in a real delivery for the TCR CTA upload.</p>
+<main class="sheet">
+{%- for i in (1..4) %}
+  <section class="card">
+    <p class="brand">{{ c.brand_name }}</p>
+    {%- if c.card_headline %}<p class="head">{{ c.card_headline }}</p>{% endif %}
+    {%- if c.card_message %}<p class="msg">{{ c.card_message }}</p>{% endif %}
+    <p class="cta">Text <span class="kw">{{ c.keyword }}</span></p>
+    <p class="num">to {{ c.sms_number }}</p>
+    <p class="what">for {{ summary }}</p>
+    <div class="qr" data-qr="SMSTO:{{ digits }}:{{ c.keyword }}"></div>
+    {%- if c.conversational %}<p class="ask">Questions? Just text us. Photos welcome.</p>{% endif %}
+    <p class="fine">By texting {{ c.keyword }} to {{ c.sms_number }}, you agree to receive recurring automated text messages from {{ c.brand_name }}: {{ summary }}. Consent is not a condition of purchase. {{ c.frequency | default: "Msg frequency varies." }} Msg &amp; data rates may apply. Reply <strong>HELP</strong> for help, <strong>STOP</strong> to opt out. Mobile information will not be shared with third parties for marketing.{% if c.conversational %} By texting us a question, you agree to receive replies about your request only (no marketing unless you text {{ c.keyword }}).{% endif %} Terms &amp; Privacy: {{ sms_url | remove: 'https://' }}</p>
+  </section>
+{%- endfor %}
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  try {
+    document.querySelectorAll('.qr').forEach(function (el) {
+      new QRCode(el, { text: el.getAttribute('data-qr'), width: 256, height: 256, correctLevel: QRCode.CorrectLevel.M });
+    });
+  } catch (e) { /* QR is optional; the card works without it */ }
+</script>
+</body>
+</html>

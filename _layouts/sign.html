@@ -31,7 +31,10 @@
   <p class="cta">Text <span class="kw">{{ c.keyword }}</span></p>
   <p class="to">to {{ c.sms_number }}</p>
   <p class="what">for {{ summary }}</p>
-  <p class="fine">By texting {{ c.keyword }} to {{ c.sms_number }}, you agree to receive recurring automated text messages from {{ c.brand_name }}: {{ summary }}. Consent is not a condition of purchase. {{ c.frequency | default: "Msg frequency varies." }} Msg &amp; data rates may apply. Reply <strong>HELP</strong> for help, <strong>STOP</strong> to opt out.{% if c.age_gated %} {{ c.min_age | default: 21 }}+ only.{% endif %} Mobile information will not be shared with third parties for marketing. Details, Terms &amp; Privacy: {{ sms_url | remove: 'https://' }}</p>
+  {%- if c.conversational %}
+  <p class="what" style="margin-top:-24px">Questions? Just text us at the same number. Photos welcome.</p>
+  {%- endif %}
+  <p class="fine">By texting {{ c.keyword }} to {{ c.sms_number }}, you agree to receive recurring automated text messages from {{ c.brand_name }}: {{ summary }}. Consent is not a condition of purchase. {{ c.frequency | default: "Msg frequency varies." }} Msg &amp; data rates may apply. Reply <strong>HELP</strong> for help, <strong>STOP</strong> to opt out.{% if c.age_gated %} {{ c.min_age | default: 21 }}+ only.{% endif %} Mobile information will not be shared with third parties for marketing.{% if c.conversational %} By texting us a question, you agree to receive replies from {{ c.brand_name }} about your request only (no marketing unless you text {{ c.keyword }}); Msg &amp; data rates may apply; reply STOP to opt out.{% endif %} Details, Terms &amp; Privacy: {{ sms_url | remove: 'https://' }}</p>
   <p class="hint">Print this page (Ctrl/Cmd + P) and post it where customers see it. Photograph it in place for the TCR CTA upload.</p>
 </main>
 </body>

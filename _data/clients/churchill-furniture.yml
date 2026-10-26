@@ -1,0 +1,34 @@
+brand_name: Churchill Furniture              # must match the TCR brand name exactly
+legal_name: Churchill Living LLC           # legal entity on the EIN
+dba: Churchill Furniture
+address: 56 Utter Ave, Hawthorne, NJ 07506
+email: leibk@churchillliving.com
+phone: (973) 664-7253
+website: https://churchilllakewood.com
+effective_date: 2026-10-26
+program_name:
+program_description: Churchill Furniture sends text messages to customers who sign up, including customer service and sales conversations (with product photos), delivery scheduling and updates, and promotional offers such as sales events, new arrivals and in-stock specials.
+message_types:
+  - Customer service and sales conversations, including product photos, quotes and answers to your questions
+  - Delivery scheduling, reminders and updates for your order
+  - Promotional offers, sales events, new arrivals and in-stock specials
+opt_in_methods:
+  - Texting JOIN to (973) 664-7253, as advertised on signs in our stores, on the card included with furniture deliveries, and on our text program page
+  - Texting us a question or photo at (973) 664-7253, which starts a customer service conversation (you receive replies about your request only; marketing messages are sent only after you text JOIN)
+keyword: JOIN
+sms_number: (973) 664-7253
+keyword_summary: special offers, delivery updates and customer service
+conversational: true                       # adds the "just text us" line + consumer-initiated disclosure on sms/sign/card
+card_headline: Thank you for choosing Churchill Furniture!
+card_message: Enjoy your new furniture. If anything isn't right, text us a photo and we'll take care of it.
+frequency: Message frequency varies. Promotional messages up to 4 per week; service and delivery messages vary based on your requests and orders.
+age_gated: false
+min_age:
+data_collected:
+  - Your name, mobile phone number and delivery address
+  - Order, purchase and delivery history
+  - Photos and messages you send us by text
+data_uses:
+  - Process, schedule and deliver your orders
+  - Answer your questions and resolve service issues
+  - Send the text messages you signed up for

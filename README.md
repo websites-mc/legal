@@ -41,4 +41,11 @@ Set `keyword`, `sms_number` and `keyword_summary` in the client's data file, the
 | `<slug>/sms.html` | `layout: sms`, `client: <slug>`, `permalink: /<slug>/sms/` | `https://legal.interline.chat/<slug>/sms/`: public keyword page with the full disclosure. Use it as the CTA link in TCR and in the client's posts. |
 | `<slug>/sign.html` | `layout: sign`, `client: <slug>`, `permalink: /<slug>/sign/` | `https://legal.interline.chat/<slug>/sign/`: printable letter-size sign for the counter or window. |
 
+Optional extras:
+
+| Field / file | Effect |
+|---|---|
+| `conversational: true` | Adds "Questions? Just text us" + the consumer-initiated disclosure (replies only, no marketing unless they text the keyword) to the sms, sign and card pages. |
+| `<slug>/card.html` (`layout: card`, `permalink: /<slug>/card/`) + optional `card_headline`, `card_message` | `https://legal.interline.chat/<slug>/card/`: printable delivery/receipt insert, 4 per letter page (4.25 × 5.5 in), with QR code that opens a text with the keyword. |
+
 The client must actually post the sign or share the page. The CTA screenshot uploaded to TCR is a photo or screenshot of the real, published ad, never a mock-up. See `playbooks/keyword-cta-playbook.md` in the compliance knowledge repo.

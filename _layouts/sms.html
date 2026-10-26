@@ -30,6 +30,11 @@ doc_title: Text Message Program
 
 <h2>Disclosure</h2>
 <p class="disclosure">By texting {{ c.keyword }} to {{ c.sms_number }}, you agree to receive recurring automated text messages from {{ c.brand_name }} at the number you texted from: {{ summary }}. Consent is not a condition of purchase. {{ c.frequency | default: "Msg frequency varies." }} Msg &amp; data rates may apply. Reply <span class="key">HELP</span> for help, <span class="key">STOP</span> to opt out at any time.{% if c.age_gated %} You must be {{ c.min_age | default: 21 }} or older to join.{% endif %} Mobile information will not be shared with third parties or affiliates for marketing or promotional purposes. See our <a href="{{ terms_url }}">Terms &amp; Conditions</a> and <a href="{{ privacy_url }}">Privacy Policy</a>.</p>
+{%- if c.conversational %}
+
+<h2>Just have a question?</h2>
+<p class="disclosure">You can also text {{ c.sms_number }} with a question or photo without joining. By starting a text conversation with {{ c.brand_name }}, you agree to receive conversational replies about your request. You will not receive marketing messages unless you text {{ c.keyword }}. Msg frequency varies. Msg &amp; data rates may apply. Reply <span class="key">HELP</span> for help, <span class="key">STOP</span> to opt out. <a href="{{ terms_url }}">Terms</a> &amp; <a href="{{ privacy_url }}">Privacy</a>.</p>
+{%- endif %}
 
 <h2>Questions</h2>
 <p>Reply <span class="key">HELP</span> to any message, or contact {{ c.brand_name }}{% if c.email %} at <a href="mailto:{{ c.email }}">{{ c.email }}</a>{% endif %}{% if c.email and c.phone %} or {% endif %}{% if c.phone %}{{ c.phone }}{% endif %}.</p>
