@@ -36,6 +36,7 @@ hosted_sms: true
 conversational: true
 card_headline: Welcome to OakRest Stays!
 card_message: You stay, we host. Text STAY to (845) 898-1234 for check-in details, stay updates and quick help from our team while you're here.
+brand_color: "#1F1E1D"
 perks:
   - title: Check-in details
     text: Door code, directions and times by text
