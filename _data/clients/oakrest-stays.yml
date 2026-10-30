@@ -1,0 +1,46 @@
+brand_name: OakRest Stays
+legal_name: OakRest Stays LLC
+dba:
+address: 300 La Vista Dr, South Fallsburg, NY 12779
+email: office@oakreststays.com
+phone: (845) 898-1234
+website: https://oakreststays.com/
+effective_date: 2026-10-30
+program_name: OakRest Stays Guest Texts
+program_description: Text messages from OakRest Stays about your booking and stay at our Sullivan County, NY vacation properties, and replies to your questions and concierge requests.
+message_types:
+  - Booking confirmations
+  - Check-in details, door codes and directions
+  - Check-out and stay reminders
+  - Replies to guest questions and concierge or catering requests
+opt_in_methods:
+  - Texting the keyword STAY to (845) 898-1234, as advertised on oakreststays.com (Contact & Booking page and site footer) and on the printed card in each OakRest Stays property
+  - Texting a question to (845) 898-1234 (replies about that request only)
+keyword: STAY
+sms_number: (845) 898-1234
+keyword_summary: booking updates, check-in details and help during your stay
+frequency: Message frequency varies based on bookings and guest requests (typically 2-6 messages per stay).
+age_gated: false
+min_age:
+data_collected:
+  - Mobile phone number
+  - Name
+  - Booking details (property, dates, group size)
+  - Content of the messages you send us
+  - Opt-in and opt-out records with date and time
+data_uses:
+  - Sending the booking and stay messages you signed up for
+  - Answering your questions and concierge or catering requests
+  - Keeping a record of your consent and honoring opt-outs
+hosted_sms: true
+conversational: true
+card_headline: Thank you for choosing OakRest Stays!
+card_message: Text STAY to (845) 898-1234 for check-in details, stay updates and quick help from our team during your stay.
+perks:
+  - title: Check-in details
+    text: Door code, directions and times by text
+  - title: Concierge
+    text: Catering and stay requests in one text
+  - title: Quick answers
+    text: Text a question, get a reply from our team
+org_id: 2204
