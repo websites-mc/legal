@@ -14,7 +14,7 @@ message_types:
   - Check-out and stay reminders
   - Replies to guest questions and concierge or catering requests
 opt_in_methods:
-  - Texting the keyword STAY to (845) 898-1234, as advertised on oakreststays.com (Contact & Booking page and site footer) and on the printed card in each OakRest Stays property
+  - Texting the keyword STAY to (845) 898-1234, as advertised on oakreststays.com (Contact & Booking page and site footer) and on the printed welcome card left in every guest room and at the check-in area of each OakRest Stays estate
   - Texting a question to (845) 898-1234 (replies about that request only)
 keyword: STAY
 sms_number: (845) 898-1234
@@ -34,8 +34,8 @@ data_uses:
   - Keeping a record of your consent and honoring opt-outs
 hosted_sms: true
 conversational: true
-card_headline: Thank you for choosing OakRest Stays!
-card_message: Text STAY to (845) 898-1234 for check-in details, stay updates and quick help from our team during your stay.
+card_headline: Welcome to OakRest Stays!
+card_message: You stay, we host. Text STAY to (845) 898-1234 for check-in details, stay updates and quick help from our team while you're here.
 perks:
   - title: Check-in details
     text: Door code, directions and times by text
