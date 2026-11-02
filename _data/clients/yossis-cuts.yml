@@ -1,0 +1,45 @@
+brand_name: Yossi's Cuts                     # must match the TCR brand name exactly
+legal_name: Premium Meats Inc                # legal entity on the EIN
+dba: Yossi's Cuts
+address: 27 Orchard St, Monsey, NY 10952
+email: office@yossiscuts.com
+phone: (845) 587-5918
+website: https://yossiscuts.com
+perks:                                       # optional, 3 short tiles on the sign
+  - title: Weekly specials
+    text: Weekly specials, in-stock items and holiday ordering reminders
+  - title: Order updates
+    text: Ready-for-pickup alerts and delivery status and ETA
+  - title: Customer service
+    text: Text a question, get a reply from our team
+effective_date: 2026-11-02
+program_name:
+program_description: Yossi's Cuts, a kosher butcher serving the meat and poultry counters at 12+ kosher supermarkets, sends text messages to customers who sign up, including order and delivery updates, account balance alerts, customer service replies to questions you text us, and promotional messages such as weekly specials, in-stock items and holiday ordering reminders.
+message_types:
+  - Order and delivery updates, such as when your order is ready for pickup and delivery status and ETA
+  - Account notifications, such as account balance alerts
+  - Customer service replies to questions you text us
+  - Promotional messages, including weekly specials, in-stock items and holiday ordering reminders
+opt_in_methods:
+  - Texting JOIN to (845) 587-5918, as advertised on the printed sign at our butcher counters and on the printed card included with deliveries
+  - Texting us a question at (845) 587-5918, which starts a customer service conversation (you receive replies about your request only; marketing messages are sent only after you text JOIN)
+keyword: JOIN
+hosted_sms: true                           # client's own number hosted for SMS: no /sms/ page; sign + card link Terms/Privacy directly
+sms_number: (845) 587-5918
+keyword_summary: order & delivery updates, account balance alerts, customer service and weekly specials
+conversational: true                       # adds the "just text us" line + consumer-initiated disclosure on sign/card
+card_headline: "Thank you for choosing Yossi's Cuts!"
+card_message: Text us at (845) 587-5918 to track your order or ask a question. Text JOIN for order updates and weekly specials.
+frequency: Message frequency varies. Promotional messages up to 4 per week; service, delivery and account messages vary based on your orders and requests.
+age_gated: false
+min_age:
+data_collected:
+  - Your name and mobile phone number
+  - Order details, including pickup and delivery information
+  - Account balance information
+  - Messages you send us by text
+data_uses:
+  - Process, prepare and deliver your orders
+  - Send order, delivery and account balance notifications
+  - Answer your questions and provide customer service
+  - Send the text messages you signed up for
