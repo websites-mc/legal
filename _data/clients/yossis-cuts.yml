@@ -5,6 +5,8 @@ address: 27 Orchard St, Monsey, NY 10952
 email: office@yossiscuts.com
 phone: (845) 587-5918
 website: https://yossiscuts.com
+logo: /yossis-cuts/logo.png                 # optional, shown on sign + card
+brand_color: "#ED2224"                      # optional, accent color on sign + card (from logo)
 perks:                                       # optional, 3 short tiles on the sign
   - title: Weekly specials
     text: Weekly specials, in-stock items and holiday ordering reminders
