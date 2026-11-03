@@ -5,7 +5,8 @@ address: 1106 River Avenue, Unit 5, Lakewood, NJ 08701
 email: hello@whitecollarcleaners.net
 phone: (848) 998-1106
 website: https://whitecollarcleaners.net
-brand_color: "#1C2B45"                       # navy; confirm against the logo
+logo: /white-collar/logo.png                 # navy logo (site logo recolored for print)
+brand_color: "#093E88"                      # White Collar navy, from whitecollarcleaners.net (accent light blue #78A1D5)
 perks:
   - title: Ready & delivery alerts
     text: Order-ready notices, pickup reminders and driver ETAs
