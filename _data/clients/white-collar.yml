@@ -1,0 +1,47 @@
+brand_name: White Collar                     # must match the TCR brand name exactly (TCR BR5UFJM)
+legal_name: Pristine DC LLC                  # legal entity on the EIN
+dba: White Collar
+address: 1106 River Avenue, Unit 5, Lakewood, NJ 08701
+email: hello@whitecollarcleaners.net
+phone: (848) 998-1106
+website: https://whitecollarcleaners.net
+brand_color: "#1C2B45"                       # navy; confirm against the logo
+perks:
+  - title: Ready & delivery alerts
+    text: Order-ready notices, pickup reminders and driver ETAs
+  - title: Customer service
+    text: Text a question, get a reply from our team
+  - title: Special offers
+    text: Seasonal specials and promotions
+effective_date: 2026-11-03
+program_name:
+program_description: White Collar, a dry cleaner and tailor in Lakewood, NJ offering daily pickup and delivery, sends text messages to customers who sign up, including order-ready and pickup notices, delivery and driver ETA updates, account and invoice notifications, customer service replies to questions you text us, and promotional messages such as seasonal specials.
+message_types:
+  - Order updates, such as when your garments or alterations are ready for pickup
+  - Pickup and delivery notifications, including driver ETAs
+  - Account notifications, such as invoices, receipts and balance reminders
+  - Customer service replies to questions you text us
+  - Promotional messages, such as seasonal specials and offers
+opt_in_methods:
+  - Texting JOIN to (848) 998-1106, as advertised on the sign displayed in our store and on the card attached to every delivered garment order
+  - Texting us a question at (848) 998-1106, which starts a customer service conversation (you receive replies about your request only; marketing messages are sent only after you text JOIN)
+keyword: JOIN
+hosted_sms: true                           # client's own number hosted for SMS: no /sms/ page; sign + card link Terms/Privacy directly
+sms_number: (848) 998-1106
+keyword_summary: order-ready & delivery updates, account notices, customer service and special offers
+conversational: true
+card_headline: "Thank you for choosing White Collar!"
+card_message: Text JOIN to (848) 998-1106 for ready-for-pickup and delivery alerts, plus occasional specials. Questions? Just text us.
+frequency: Message frequency varies. Promotional messages up to 4 per month; order, delivery and account messages vary based on your orders and requests.
+age_gated: false
+min_age:
+data_collected:
+  - Your name, mobile phone number and pickup/delivery address
+  - Order details, including garments, alterations and pickup or delivery times
+  - Account and invoice information
+  - Messages you send us by text
+data_uses:
+  - Process, clean, alter and deliver your orders
+  - Send order-ready, delivery and account notifications
+  - Answer your questions and provide customer service
+  - Send the text messages you signed up for
