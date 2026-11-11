@@ -1,0 +1,36 @@
+brand_name: Errands NYC                      # must match the TCR brand name exactly (BFDR60J)
+legal_name: ERRANDS NYC INC.                 # legal entity on the EIN
+dba: Errands NYC
+address: 908 Driggs Avenue, Brooklyn, NY 11211
+email: hi@errands.nyc
+phone: (718) 504-8700
+website: https://errands.nyc
+effective_date: 2026-11-11
+program_name: Errands NYC delivery text messaging program
+program_description: Errands NYC is a same-day courier and delivery service for businesses and individuals across Brooklyn and the tri-state area. We send text messages about pickups and deliveries to our account holders, to the recipients of packages we deliver, and to our delivery Pros (couriers), and we reply to questions sent to our support number. Some messages include a delivery photo (MMS) or a tracking link. We do not send marketing messages through this Program.
+message_types:
+  - Pickup and delivery updates, such as order confirmations, pickup notices, out-for-delivery notices with ETA and a live tracking link, delivered notices with a delivery photo, and delay or problem alerts
+  - Account notifications for account holders, such as order totals and account updates
+  - Customer support replies to questions you text us
+  - "For delivery Pros (couriers) only: route and order assignments, delivery photo checks, schedule and payment updates, sent in English or Spanish"
+opt_in_methods:
+  - "Account holders: checking the unchecked Text Message Consent box under Account > Notifications at app.errands.nyc and choosing which updates to receive by SMS"
+  - "Package recipients: the business or person sending the package confirms, when creating the order, that the recipient agreed to receive delivery text messages from Errands NYC. The first message to each recipient identifies Errands NYC and explains how to reply STOP"
+  - "Delivery Pros (couriers): checking the unchecked SMS consent box on the Errands NYC Pro sign-up form"
+  - "Texting a question to (718) 504-8700, which starts a customer support conversation (you receive replies about your request only)"
+hosted_sms: true                            # client's own number hosted for SMS: no /sms/ page on our domain
+conversational: true
+sms_number: (718) 504-8700
+frequency: Message frequency varies based on your orders and deliveries. Account holders and recipients typically receive a few messages per order. Delivery Pros may receive several messages per day while working.
+age_gated: false
+min_age:
+data_collected:
+  - Your name, email address and mobile phone number
+  - Pickup and delivery addresses and order details
+  - Delivery photos and proof of delivery
+  - Messages you send us by text
+data_uses:
+  - Schedule, pick up and deliver orders
+  - Send pickup, delivery and account notifications, including tracking links and delivery photos
+  - Coordinate routes and deliveries with our delivery Pros
+  - Answer your questions and provide customer support
