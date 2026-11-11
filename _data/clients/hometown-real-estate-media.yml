@@ -1,0 +1,31 @@
+brand_name: Hometown Real Estate Media      # must match the TCR brand name exactly
+legal_name: Malky Klein Photography Inc
+dba: Hometown Real Estate Media
+address: 6 Kiwi Loop, Howell, NJ 07731
+email: malky@hometownrealestatemedia.com
+phone: (732) 680-2700
+website: https://book.hometownrealestatemedia.com/order/malky/order
+effective_date: 2026-11-11
+program_name:
+program_description: Hometown Real Estate Media, a real estate photography and media company, sends text messages to customers who book a shoot and agree to receive texts, including booking confirmations, appointment reminders and schedule changes, notices when finished photos and media are ready, and customer service replies.
+message_types:
+  - Booking confirmations, appointment reminders and schedule changes for your photo shoot
+  - Notices when your finished photos and media are ready
+  - Customer service replies to questions about your order
+opt_in_methods:
+  - After you book a shoot, we call to confirm your booking and ask whether you agree to receive text messages about it. We read you this program's details (message types, frequency, message and data rates, HELP and STOP, and where to find these Terms and our Privacy Policy) and send texts only if you say yes.
+keyword:
+sms_number: (732) 680-2700
+keyword_summary:
+frequency: Message frequency varies based on your bookings, up to 8 messages per month.
+age_gated: false
+min_age:
+data_collected:
+  - Your name, email address and mobile phone number
+  - Property address and shoot details for your booking
+  - Messages you send us by text
+data_uses:
+  - Schedule, confirm and complete your photo shoot
+  - Notify you when your photos and media are ready
+  - Answer your questions and provide customer service
+  - Send the text messages you agreed to receive
