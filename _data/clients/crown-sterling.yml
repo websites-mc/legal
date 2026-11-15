@@ -1,0 +1,41 @@
+brand_name: Crown Sterling                   # must match the TCR brand name exactly
+legal_name: Crown Sterling Silver LLC        # legal entity on the EIN
+dba: Crown Sterling
+address: 230 Acres Rd #101, Monroe, NY 10950
+email: Moshe@crownsterlingsilver.com
+phone: (845) 662-3193
+website: https://crownsterlingsilverllc.com
+brand_color: "#1F3A5F"                       # navy, from the site logo
+perks:
+  - title: Special offers
+    text: Sales, new arrivals and holiday specials
+  - title: Order updates
+    text: Order status and delivery updates
+  - title: Customer service
+    text: Questions, prices and product photos
+effective_date: 2026-11-15
+program_name:
+program_description: Crown Sterling sends text messages to customers who sign up, including customer service and sales conversations (with product photos and prices), order and delivery updates, and promotional offers such as sales events, new arrivals and holiday specials.
+message_types:
+  - Customer service and sales conversations, including product photos, prices and answers to your questions
+  - Order and delivery updates
+  - Promotional offers, product availability alerts, discounts and sales events
+opt_in_methods:
+  - Texting JOIN to (845) 783-0675, as advertised on the sign in our store at 230 Acres Rd #101, Monroe, NY
+  - Texting us a question or photo at (845) 783-0675, which starts a customer service conversation (you receive replies about your request only; marketing messages are sent only after you text JOIN)
+keyword: JOIN
+hosted_sms: true                             # client's own number: no /sms/ page; sign links Terms/Privacy directly
+sms_number: (845) 783-0675
+keyword_summary: special offers, order and delivery updates, and customer service
+conversational: true
+frequency: Message frequency varies. Promotional messages up to 4 per week; service and delivery messages vary based on your requests and orders.
+age_gated: false
+min_age:
+data_collected:
+  - Your name and mobile phone number
+  - Your delivery address and order history
+  - Photos and messages you send us by text
+data_uses:
+  - Answer your questions and send product photos and prices
+  - Process and deliver your orders
+  - Send the text messages you signed up for
