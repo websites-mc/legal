@@ -1,7 +1,7 @@
 brand_name: Crown Sterling                   # must match the TCR brand name exactly
 legal_name: Crown Sterling Silver LLC        # legal entity on the EIN
 dba: Crown Sterling
-address: 230 Acres Rd #101, Monroe, NY 10950
+address: "230 Acres Rd #101, Monroe, NY 10950"
 email: Moshe@crownsterlingsilver.com
 phone: (845) 662-3193
 website: https://crownsterlingsilverllc.com
@@ -21,7 +21,7 @@ message_types:
   - Order and delivery updates
   - Promotional offers, product availability alerts, discounts and sales events
 opt_in_methods:
-  - Texting JOIN to (845) 783-0675, as advertised on the sign in our store at 230 Acres Rd #101, Monroe, NY
+  - "Texting JOIN to (845) 783-0675, as advertised on the sign in our store at 230 Acres Rd #101, Monroe, NY"
   - Texting us a question or photo at (845) 783-0675, which starts a customer service conversation (you receive replies about your request only; marketing messages are sent only after you text JOIN)
 keyword: JOIN
 hosted_sms: true                             # client's own number: no /sms/ page; sign links Terms/Privacy directly
