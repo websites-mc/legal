@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ layout.doc_title }} | {{ c.brand_name }}</title>
-  <meta name="description" content="{{ layout.doc_title }} for {{ c.legal_name }}">
+  <meta name="description" content="{{ layout.doc_title }} for {{ c.legal_name }}">{% if c.revision %}
+  <meta name="legal-revision" content="{{ c.revision }}">{% endif %}
   <style>
     :root { --text:#1d1d1f; --muted:#5f6368; --line:#e3e3e3; --bg:#ffffff; --accent:#1a56db; }
     @media (prefers-color-scheme: dark) {

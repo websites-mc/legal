@@ -9,7 +9,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="robots" content="noindex">
+  <meta name="robots" content="noindex">{% if c.revision %}
+  <meta name="legal-revision" content="{{ c.revision }}">{% endif %}
   <title>Text {{ c.keyword }} sign | {{ c.brand_name }}</title>
   <style>
     @page { size: letter; margin: 0; }

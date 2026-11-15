@@ -1,0 +1,141 @@
+{%- comment -%}
+  One printed placement ("piece"), written by the Interline back office.
+  Stub: layout: piece, client: <slug>, piece: <id>, permalink: /<slug>/<id>/.
+  The piece is the entry of site.data.clients[<slug>].placements whose id is
+  <id>. The disclosure is printed word for word from the data file; never
+  rebuild it from other fields here. See README "Printed pieces (placements)".
+{%- endcomment -%}
+{%- assign c = site.data.clients[page.client] -%}
+{%- assign p = c.placements | where: "id", page.piece | first -%}
+{%- capture summary %}{% if c.keyword_summary %}{{ c.keyword_summary }}{% else %}{{ c.message_types | join: '; ' }}{% endif %}{% endcapture -%}
+{%- assign digits = c.sms_number | remove: ' ' | remove: '(' | remove: ')' | remove: '-' | remove: '+' -%}
+{%- assign brand = c.brand_color | default: '#111111' -%}
+{%- assign accent = c.accent_color | default: brand -%}
+{%- assign size = p.size | default: 'letter' -%}
+{%- case size -%}
+  {%- when 'quarter' -%}{%- assign count = 4 -%}{%- assign orient = 'portrait' -%}
+  {%- when 'half' -%}{%- assign count = 2 -%}{%- assign orient = 'landscape' -%}
+  {%- when 'tent' -%}{%- assign count = 2 -%}{%- assign orient = 'portrait' -%}
+  {%- else -%}{%- assign size = 'letter' -%}{%- assign count = 1 -%}{%- assign orient = 'portrait' -%}
+{%- endcase -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  {%- if c.revision and p %}
+  <meta name="legal-revision" content="{{ c.revision }}">
+  {%- endif %}
+  <title>{% if p %}{{ p.name }}{% else %}Piece not found{% endif %} | {{ c.brand_name }}</title>
+  <style>
+    @page { size: letter {{ orient }}; margin: 0; }
+    :root { --brand: {{ brand }}; --accent: {{ accent }}; --tint: color-mix(in srgb, var(--brand) 9%, #fff); --ink:#16191b; }
+    * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { margin:0; background:#eceeee; color:var(--ink); font:16px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    .hint { max-width: 8.5in; margin: 16px auto; padding: 0 16px; font-size: 14px; color:#555; }
+    .missing { max-width: 8.5in; margin: 48px auto; padding: 24px 16px; background:#fff; border-radius: 12px; }
+
+    /* The sheet: always one letter page, portrait or landscape. */
+    .sheet { margin: 0 auto 24px; background:#fff; display:grid; overflow:hidden; }
+    .sheet.portrait { width: 8.5in; height: 11in; }
+    .sheet.landscape { width: 11in; height: 8.5in; }
+    .s-letter { grid-template-columns: 1fr; grid-template-rows: 1fr; }
+    .s-quarter { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+    .s-half { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+    .s-tent { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+    /* Cut lines between copies; the tent's middle is a fold, not a cut. */
+    .s-quarter .piece, .s-half .piece { outline: 1px dashed #c3c7c7; outline-offset: -0.5px; }
+    .s-tent .piece:first-child { transform: rotate(180deg); border-top: 1px dashed #c3c7c7; }
+
+    /* One copy of the piece. Sizes scale through these variables. */
+    .piece { position:relative; display:flex; flex-direction:column; text-align:center; overflow:hidden; min-width:0; min-height:0;
+             --pad: 0.6in; --logo: 1.25in; --name: 34px; --head: 30px; --msg: 20px; --cta: 72px; --to: 44px; --what: 21px; --qr: 1.9in; --ask: 22px; --fine: 11.5px; --foot: 14px; }
+    .s-half .piece, .s-tent .piece { --pad: 0.4in; --logo: 0.85in; --name: 24px; --head: 22px; --msg: 15px; --cta: 40px; --to: 26px; --what: 14px; --qr: 1.25in; --ask: 15px; --fine: 9px; --foot: 11px; }
+    .s-half .piece { --logo: 1.1in; --head: 26px; --msg: 17px; }
+    .s-quarter .piece { --pad: 0.3in; --logo: 0.75in; --name: 18px; --head: 19px; --msg: 13px; --cta: 28px; --to: 19px; --what: 11.5px; --qr: 1.08in; --ask: 13px; --fine: 7.4px; --foot: 10px; }
+    .inner { padding: calc(var(--pad) * .6) var(--pad) 0; display:flex; flex-direction:column; flex:1; min-height:0; }
+    .body { flex:1; display:flex; flex-direction:column; justify-content:center; min-height:0; }
+    .logo { height: var(--logo); max-width: 100%; margin: 0 auto calc(var(--pad) * .35); object-fit: contain; }
+    .brandname { font-size: var(--name); font-weight: 800; color: var(--brand); margin: 0 0 calc(var(--pad) * .25); }
+    .rule { height: 4px; width: 22%; margin: 0 auto calc(var(--pad) * .35); background: var(--accent); border-radius: 2px; }
+    .head { font-size: var(--head); line-height:1.15; font-weight:800; margin:0 0 6px; color: var(--brand); }
+    .msg { font-size: var(--msg); margin:0 0 calc(var(--pad) * .4); color:#3a3a3a; }
+    .hero { display:flex; align-items:center; gap: calc(var(--pad) * .5); background: var(--tint); border-radius: 14px; padding: calc(var(--pad) * .55); text-align:left; }
+    .hero .copy { flex:1; min-width:0; }
+    .cta { font-size: var(--cta); font-weight:800; margin:0; line-height:1.05; letter-spacing:-.01em; }
+    .kw { display:inline-block; background: var(--brand); color:#fff; border-radius: .2em; padding: 0 .28em .06em; }
+    .to { font-size: var(--to); font-weight:800; margin: .25em 0 .15em; white-space:nowrap; }
+    .what { font-size: var(--what); margin:0; color:#333; }
+    .qrbox { flex: 0 0 auto; text-align:center; }
+    .qr { width: var(--qr); height: var(--qr); background:#fff; border-radius: 8px; padding: 5px; }
+    .qr svg { width:100%; height:100%; display:block; }
+    .qrcap { font-size: calc(var(--what) * .6); font-weight:600; margin-top: 4px; color: var(--accent); }
+    .ask { font-size: var(--ask); margin: calc(var(--pad) * .5) 0 0; }
+    .ask b { color: var(--accent); }
+    .fine { font-size: var(--fine); line-height:1.4; color:#3a3a3a; text-align:left; padding: calc(var(--pad) * .35) 0 calc(var(--pad) * .25); }
+    .foot { background: var(--brand); color:#fff; font-size: var(--foot); font-weight:600; letter-spacing:.05em; padding: .45em var(--pad); border-top: 3px solid var(--accent); }
+    .s-letter .fine { border-top: 1px solid #ccd; }
+
+    @media print { body { background:#fff; } .hint { display:none; } .sheet { margin:0; } }
+    @media screen and (max-width: 8.6in) {
+      .sheet.portrait, .sheet.landscape { width:100%; height:auto; grid-template-columns:1fr; grid-template-rows:none; }
+      .piece { min-height: 5.5in; --pad: 16px; }
+      .s-tent .piece:first-child { transform:none; }
+      .hero { flex-direction:column; }
+      .hero .copy { text-align:center; }
+      .s-letter .piece { --cta: 44px; --to: 28px; }
+      .to { white-space: normal; }
+      .logo { height:auto; max-height: var(--logo); width: auto; }
+    }
+  </style>
+</head>
+<body>
+{%- if p == nil %}
+<main class="missing">
+  <h1>This piece is not in the client's data file</h1>
+  <p>No placement with id <code>{{ page.piece }}</code> in <code>_data/clients/{{ page.client }}.yml</code>. The back office writes the stub and the list in one commit; publish again from the back office.</p>
+</main>
+{%- else %}
+{%- capture how %}{% case size %}{% when 'quarter' %}4 per letter page (each 4.25 × 5.5 in); print on card stock and cut on the dashed lines{% when 'half' %}2 per letter page, landscape (each 5.5 × 8.5 in); cut on the dashed line{% when 'tent' %}a table tent: fold the letter page in half on the dashed line so both faces stand upright{% else %}one letter page (8.5 × 11 in){% endcase %}{% endcapture %}
+<p class="hint">Print <em>{{ p.name }}</em> at 100% on letter paper (Ctrl/Cmd + P, margins: none, background graphics on): {{ how }}. Put it {{ p.where }}, then photograph it in place (never a mock-up) for the campaign proof.</p>
+<main class="sheet {{ orient }} s-{{ size }}">
+{%- for i in (1..count) %}
+  <section class="piece">
+    <div class="inner">
+      <div class="body">
+      {%- if c.logo %}<img class="logo" src="{{ c.logo | relative_url }}" alt="{{ c.brand_name }}">{% else %}<p class="brandname">{{ c.brand_name }}</p>{% endif %}
+      {%- if c.accent_color %}<div class="rule"></div>{% endif %}
+      {%- if p.headline %}<p class="head">{{ p.headline }}</p>{% elsif c.logo %}<p class="head">{{ c.brand_name }}</p>{% endif %}
+      {%- if p.message %}<p class="msg">{{ p.message }}</p>{% endif %}
+      <div class="hero">
+        <div class="copy">
+          <p class="cta">Text <span class="kw">{{ c.keyword }}</span></p>
+          <p class="to">to {{ c.sms_number }}</p>
+          <p class="what">for {{ summary }}</p>
+        </div>
+        <div class="qrbox">
+          <div class="qr" data-qr="SMSTO:{{ digits }}:{{ c.keyword }}"></div>
+          <div class="qrcap">Scan to text {{ c.keyword }}</div>
+        </div>
+      </div>
+      {%- if c.conversational %}<p class="ask"><b>Questions?</b> Just text us.</p>{% endif %}
+      </div>
+      <p class="fine">{{ c.disclosure | escape | replace: 'Reply HELP for help', 'Reply <strong>HELP</strong> for help' | replace: 'STOP to opt out', '<strong>STOP</strong> to opt out' }}</p>
+    </div>
+    <div class="foot">{% if c.website %}{{ c.website | remove: 'https://' | remove: 'http://' | remove: 'www.' }}{% else %}{{ c.brand_name }}{% endif %}</div>
+  </section>
+{%- endfor %}
+</main>
+<script src="{{ '/assets/qrcode.js' | relative_url }}"></script>
+<script>
+  try {
+    document.querySelectorAll('[data-qr]').forEach(function (el) {
+      var q = qrcode(0, 'M'); q.addData(el.getAttribute('data-qr')); q.make();
+      el.innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+    });
+  } catch (e) { /* QR is optional */ }
+</script>
+{%- endif %}
+</body>
+</html>
