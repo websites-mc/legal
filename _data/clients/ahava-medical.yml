@@ -1,0 +1,20 @@
+org_id: 2178
+brand_name: Ahava Medical Center              # must match the TCR brand name exactly
+legal_name: Ahava Medical and Rehabilitation LLC
+dba: Ahava Medical Center
+address: 2555 Nostrand Ave, Brooklyn, NY 11210
+email: info@ahavamedical.com
+phone: (718) 502-9900
+website: https://ahavamedical.com
+effective_date: 2026-11-16
+program_description: Ahava Medical Center sends appointment reminders and confirmations, healthcare-related notifications and staff replies to patients who sign our SMS Text Messaging Consent form.
+message_types:
+  - Appointment reminders and confirmations
+  - Healthcare-related notifications about your visits
+  - Replies from our staff when you reply 3 to speak with staff
+opt_in_methods:
+  - Signing the paper SMS Text Messaging Consent form at any Ahava Medical location
+sms_number: (929) 476-0186
+frequency: Message frequency varies based on your appointment schedule.
+age_gated: false
+# Pages are static (layout: null) for medical wording and 3/4 reply keywords.
