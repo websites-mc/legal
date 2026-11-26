@@ -5,6 +5,8 @@ address: "5024 13th Avenue, Brooklyn, NY 11219"
 email: chaim@hellosesame.com
 phone: (718) 427-0000
 website: https://hellosesame.com
+logo: /sesame/logo.svg                       # optional, shown on sign + card (site header logo)
+brand_color: "#000000"                       # black, from the logo (logo accent yellow #FFDE17 is too light for text on white)
 perks:
   - title: Special offers
     text: Deals, new menu items and holiday specials
