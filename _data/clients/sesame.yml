@@ -1,0 +1,40 @@
+brand_name: Sesame                           # must match the TCR brand name exactly
+legal_name: Sesame Boro Park Inc             # legal entity on the EIN
+dba: Sesame
+address: "5024 13th Avenue, Brooklyn, NY 11219"
+email: chaim@hellosesame.com
+phone: (718) 427-0000
+website: https://hellosesame.com
+perks:
+  - title: Special offers
+    text: Deals, new menu items and holiday specials
+  - title: Order updates
+    text: Know when your order is ready for pickup
+  - title: Customer service
+    text: Questions about orders, menu and hours
+effective_date: 2026-11-26
+program_name:
+program_description: Sesame sends text messages to customers who sign up, including customer service conversations, order and pickup updates, and promotional offers such as special offers, new menu items and holiday specials.
+message_types:
+  - Customer service conversations, including answers to your questions about orders, menu items and store hours
+  - Order status updates, such as when your order is ready for pickup or out for delivery
+  - Promotional offers, new menu items and holiday specials
+opt_in_methods:
+  - "Texting JOIN to (718) 427-0000, as advertised on the sign in our store at 5024 13th Avenue, Brooklyn, NY"
+  - Texting us a question at (718) 427-0000, which starts a customer service conversation (you receive replies about your request only; marketing messages are sent only after you text JOIN)
+keyword: JOIN
+hosted_sms: true                             # client's own number: no /sms/ page; sign links Terms/Privacy directly
+sms_number: (718) 427-0000
+keyword_summary: special offers, order and pickup updates, and customer service
+conversational: true
+frequency: Message frequency varies. Promotional messages up to 4 per month; order and service messages vary based on your orders and requests.
+age_gated: false
+min_age:
+data_collected:
+  - Your name and mobile phone number
+  - Your order details and order history
+  - Messages you send us by text
+data_uses:
+  - Answer your questions and provide customer service
+  - Prepare your orders and notify you when they are ready
+  - Send the text messages you signed up for
